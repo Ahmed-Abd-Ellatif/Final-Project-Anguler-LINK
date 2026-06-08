@@ -1,0 +1,168 @@
+<main>
+  <section class="p-0 d-flex align-items-center position-relative overflow-hidden">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left -->
+        <div
+          class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100"
+        >
+          <app-auth-picture />
+        </div>
+
+        <!-- Right -->
+        <div class="col-12 col-lg-6 m-auto">
+          <div class="row my-5">
+            <div class="col-sm-10 col-xl-8 m-auto">
+              <!-- Title -->
+              <!--<img src="assets/images/element/03.svg" class="h-40px mb-2" alt="">-->
+              <h2>Sign up for your account!</h2>
+              <p class="lead mb-4">Nice to see you! Please Sign up with your account.</p>
+
+              <!-- Form START -->
+              <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <!-- Name -->
+                <div class="mb-4">
+                  <label for="signupName" class="form-label">Name *</label>
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="bi bi-person-fill"></i
+                    ></span>
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      [class.is-invalid]="name.invalid && name.touched"
+                      placeholder="Name"
+                      id="signupName"
+                    />
+                  </div>
+                  @if (name.touched && name.hasError('required')) {
+                    <div class="text-danger small mt-1">Name is required.</div>
+                  } @else if (name.touched && name.hasError('minlength')) {
+                    <div class="text-danger small mt-1">Name must be at least 3 characters.</div>
+                  }
+                </div>
+                <!-- Email -->
+                <div class="mb-4">
+                  <label for="signupEmail" class="form-label">Email address *</label>
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="bi bi-envelope-fill"></i
+                    ></span>
+                    <input
+                      type="email"
+                      formControlName="email"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      [class.is-invalid]="email.invalid && email.touched"
+                      placeholder="E-mail"
+                      id="signupEmail"
+                    />
+                  </div>
+                  @if (email.touched && email.hasError('required')) {
+                    <div class="text-danger small mt-1">Email is required.</div>
+                  } @else if (email.touched && email.hasError('email')) {
+                    <div class="text-danger small mt-1">Please enter a valid email address.</div>
+                  }
+                </div>
+                <!-- Password -->
+                <div class="mb-4">
+                  <label for="signupPassword" class="form-label">Password *</label>
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="fas fa-lock"></i
+                    ></span>
+                    <input
+                      type="password"
+                      formControlName="password"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      [class.is-invalid]="password.invalid && password.touched"
+                      placeholder="*********"
+                      id="signupPassword"
+                    />
+                  </div>
+                  @if (password.touched && password.hasError('required')) {
+                    <div class="text-danger small mt-1">Password is required.</div>
+                  } @else if (password.touched && password.hasError('minlength')) {
+                    <div class="text-danger small mt-1">
+                      Password must be at least 6 characters.
+                    </div>
+                  }
+                </div>
+                <!-- Confirm Password -->
+                <div class="mb-4">
+                  <label for="signupConfirmPassword" class="form-label">Confirm Password *</label>
+                  <div class="input-group input-group-lg">
+                    <span
+                      class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                      ><i class="fas fa-lock"></i
+                    ></span>
+                    <input
+                      type="password"
+                      formControlName="confirmPassword"
+                      class="form-control border-0 bg-light rounded-end ps-1"
+                      [class.is-invalid]="
+                        (confirmPassword.touched && confirmPassword.hasError('required')) ||
+                        (confirmPassword.touched && signupForm.hasError('passwordsMismatch'))
+                      "
+                      placeholder="*********"
+                      id="signupConfirmPassword"
+                    />
+                  </div>
+                  @if (confirmPassword.touched && confirmPassword.hasError('required')) {
+                    <div class="text-danger small mt-1">Please confirm your password.</div>
+                  } @else if (confirmPassword.touched && signupForm.hasError('passwordsMismatch')) {
+                    <div class="text-danger small mt-1">Passwords do not match.</div>
+                  }
+                </div>
+                <!-- Terms checkbox -->
+                <div class="mb-4">
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      formControlName="termsAndConditions"
+                      class="form-check-input"
+                      [class.is-invalid]="terms.touched && terms.invalid"
+                      id="signupTerms"
+                    />
+                    <label class="form-check-label" for="signupTerms">
+                      By signing up, you agree to the <a href="#">terms of service</a>
+                    </label>
+                  </div>
+                  @if (terms.touched && terms.hasError('required')) {
+                    <div class="text-danger small mt-1">
+                      You must accept the terms and conditions.
+                    </div>
+                  }
+                </div>
+                <!-- Button -->
+                <div class="align-items-center mt-0">
+                  <div class="d-grid">
+                    <button
+                      class="btn btn-primary mb-0"
+                      type="submit"
+                      [disabled]="signupForm.invalid || isLoading"
+                    >
+                      @if (isLoading) {
+                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                      }
+                      Sign Up
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <!-- Form END -->
+
+              <!-- Sign up link -->
+              <div class="mt-4 text-center">
+                <span>Already have an account?<a routerLink="/login"> Sign in here</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

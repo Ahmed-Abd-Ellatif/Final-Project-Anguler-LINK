@@ -1,0 +1,306 @@
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- Page Banner START  -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<section
+  class="bg-dark align-items-center d-flex"
+  style="
+    background: url(assets/images/pattern/04.png) no-repeat center center;
+    background-size: cover;
+  "
+>
+  <div class="container">
+    <!-- Main banner background image -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Title -->
+          <h1 class="text-white">{{ isEditMode ? 'Edit Course' : 'Add New Course' }}</h1>
+          <!-- Breadcrumb -->
+          <div class="d-flex">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Courses</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  {{ isEditMode ? 'Edit Course' : 'Add New Course' }}
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- FORM -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row my-5">
+      <div class="mb-4 col-md-6">
+        <label for="tiltle" class="form-label">Title *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="text"
+            formControlName="title"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Title"
+            id="title"
+          />
+        </div>
+        @if (formControls.title.invalid && formControls.title.touched) {
+          <div class="text-danger small mt-1">Title is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="description" class="form-label">Description *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="text"
+            formControlName="description"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Description"
+            id="description"
+          />
+        </div>
+        @if (formControls.description.invalid && formControls.description.touched) {
+          <div class="text-danger small mt-1">Description is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="instructor" class="form-label">Instructor *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="text"
+            formControlName="instructor"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Instructor"
+            id="instructor"
+          />
+        </div>
+        @if (formControls.instructor.invalid && formControls.instructor.touched) {
+          <div class="text-danger small mt-1">Instructor is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="numberOfHours" class="form-label">Number of Hours *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="number"
+            pattern="[0-9]*"
+            formControlName="numberOfHours"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Number of Hours"
+            id="numberOfHours"
+          />
+        </div>
+        @if (formControls.numberOfHours.invalid && formControls.numberOfHours.touched) {
+          <div class="text-danger small mt-1">Number of Hours is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="numberOfMinutes" class="form-label">Number of Minutes *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="number"
+            pattern="[0-9]*"
+            formControlName="numberOfMinutes"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Number of Minutes"
+            id="numberOfMinutes"
+          />
+        </div>
+        @if (formControls.numberOfMinutes.invalid && formControls.numberOfMinutes.touched) {
+          <div class="text-danger small mt-1">Number of Minutes is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="numberOfLectures" class="form-label">Number of Lectures *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="number"
+            pattern="[0-9]*"
+            formControlName="numberOfLectures"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Number of Lectures"
+            id="numberOfLectures"
+          />
+        </div>
+        @if (formControls.numberOfLectures.invalid && formControls.numberOfLectures.touched) {
+          <div class="text-danger small mt-1">Number of Lectures is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="price" class="form-label">Price *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="number"
+            pattern="[0-9]*"
+            formControlName="price"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Price"
+            id="price"
+          />
+        </div>
+        @if (formControls.price.invalid && formControls.price.touched) {
+          <div class="text-danger small mt-1">Price is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="priceLevel" class="form-label">Price Level </label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+
+          <input
+            type="text"
+            readonly
+            [value]="formControls.price.value === 0 ? 'Free' : 'Paid'"
+            formControlName="priceLevel"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Price Level"
+            id="priceLevel"
+          />
+        </div>
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="rating" class="form-label">Rating *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="number"
+            max="5"
+            min="0"
+            pattern="^[0-9]*\.?[0-9]*$"
+            formControlName="rating"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Rating"
+            id="rating"
+          />
+        </div>
+        @if (formControls.rating.invalid && formControls.rating.touched) {
+          <div class="text-danger small mt-1">Rating is required.</div>
+        }
+      </div>
+
+      <div class="mb-4 col-md-6">
+        <label for="category" class="form-label">Category *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <select
+            formControlName="category"
+            class="form-control border-0 bg-light rounded-end ps-1"
+          >
+            <option value="" selected disabled>Select Category</option>
+            @for (category of categories; track category._id) {
+              <option [value]="category.name">{{ category.name }}</option>
+            }
+          </select>
+        </div>
+        @if (formControls.category.invalid && formControls.category.touched) {
+          <div class="text-danger small mt-1">Category is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-6">
+        <label for="level" class="form-label">Level *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <select formControlName="level" class="form-control border-0 bg-light rounded-end ps-1">
+            <option value="" selected disabled>Select Level</option>
+            @for (level of skillLevels; track level._id) {
+              <option [value]="level.name">{{ level.name }}</option>
+            }
+          </select>
+        </div>
+
+        @if (formControls.level.invalid && formControls.level.touched) {
+          <div class="text-danger small mt-1">Level is required.</div>
+        }
+      </div>
+
+      <div class="mb-4 col-md-6">
+        <label for="language" class="form-label">Language *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <select
+            formControlName="language"
+            class="form-control border-0 bg-light rounded-end ps-1"
+          >
+            <option selected disabled>Select Language</option>
+            @for (language of languages; track language._id) {
+              <option [value]="language.name">{{ language.name }}</option>
+            }
+          </select>
+        </div>
+        @if (formControls.language.invalid && formControls.language.touched) {
+          <div class="text-danger small mt-1">Language is required.</div>
+        }
+      </div>
+      <div class="mb-4 col-md-12">
+        <label for="courseImage" class="form-label">Course Image *</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="text"
+            formControlName="courseImage"
+            class="form-control border-0 bg-light rounded-end ps-1"
+            placeholder="Course Image"
+            id="courseImage"
+          />
+        </div>
+        @if (formControls.courseImage.invalid && formControls.courseImage.touched) {
+          <div class="text-danger small mt-1">Course Image is required.</div>
+        }
+      </div>
+      @if (formControls.courseImage.value) {
+        <div class="mb-4 col-md-6 card">
+          <img
+            style="width: 200px"
+            [src]="form.get('courseImage')?.value"
+            alt="Course Image"
+            class="img-fluid rounded"
+          />
+        </div>
+      }
+    </div>
+    <div class="d-flex justify-content-end mb-5">
+      <button type="submit" class="btn btn-primary">
+        <i [ngClass]="isEditMode ? 'fas fa-edit me-1' : 'fas fa-plus me-1'"></i>
+        {{ isEditMode ? 'Update Course' : 'Add Course' }}
+      </button>
+    </div>
+  </form>
+</div>

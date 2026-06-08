@@ -25,7 +25,10 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/tiny-slider/dist/tiny-slider.css",
+              "node_modules/ngx-toastr/toastr.css"
             ]
           },
           "configurations": {
