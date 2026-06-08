@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
-  baseUrl: string = 'http://localhost:3000/api/';
+  // baseUrl: string = 'http://localhost:3000/api/';
+  baseUrl: string = 'https://final-project-node-link.vercel.app/api/';
   _http = inject(HttpClient);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
