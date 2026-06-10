@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/api/auth';
+  // private baseUrl = 'http://localhost:3000/api/auth';
+  private baseUrl: string = 'https://final-project-node-link.vercel.app/api/';
   _http = inject(HttpClient);
 
   login(body: { email: string; password: string }): Observable<any> {
