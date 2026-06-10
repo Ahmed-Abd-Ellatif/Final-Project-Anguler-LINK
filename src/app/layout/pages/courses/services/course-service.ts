@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
+import { LookupsApiResponse } from '../models/lookups.interface';
+import { CourseApiResponse } from '../models/course.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,7 @@ export class CourseService {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GET ALL COURSES
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  getCourses(body: any): Observable<any> {
+  getCourses(body: any): Observable<CourseApiResponse> {
     let params = new HttpParams();
     if (body.category?.length > 0) {
       params = params.append('category', body.category.join(','));
@@ -31,13 +33,13 @@ export class CourseService {
     if (body.sort) {
       params = params.append('sort', body.sort);
     }
-    return this._http.get(`${environment.baseUrl}courses`, { params });
+    return this._http.get<CourseApiResponse>(`${environment.baseUrl}courses`, { params });
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GET COURSE BY ID
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  getCourseById(id: string): Observable<any> {
-    return this._http.get(`${environment.baseUrl}courses/${id}`);
+  getCourseById(id: string): Observable<CourseApiResponse> {
+    return this._http.get<CourseApiResponse>(`${environment.baseUrl}courses/${id}`);
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // CREATE COURSE
@@ -60,16 +62,16 @@ export class CourseService {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GET LOOKUPS
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  getCategories(): Observable<any> {
-    return this._http.get<any>(`${environment.baseUrl}lookups/categories`);
+  getCategories(): Observable<LookupsApiResponse> {
+    return this._http.get<LookupsApiResponse>(`${environment.baseUrl}lookups/categories`);
   }
-  getPrices(): Observable<any> {
-    return this._http.get(`${environment.baseUrl}lookups/prices`);
+  getPrices(): Observable<LookupsApiResponse> {
+    return this._http.get<LookupsApiResponse>(`${environment.baseUrl}lookups/prices`);
   }
-  getSkillLevels(): Observable<any> {
-    return this._http.get(`${environment.baseUrl}lookups/skill-levels`);
+  getSkillLevels(): Observable<LookupsApiResponse> {
+    return this._http.get<LookupsApiResponse>(`${environment.baseUrl}lookups/skill-levels`);
   }
-  getLanguages(): Observable<any> {
-    return this._http.get(`${environment.baseUrl}lookups/languages`);
+  getLanguages(): Observable<LookupsApiResponse> {
+    return this._http.get<LookupsApiResponse>(`${environment.baseUrl}lookups/languages`);
   }
 }

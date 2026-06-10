@@ -3,6 +3,8 @@ import { CourseService } from './services/course-service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Lookups, LookupsApiResponse } from './models/lookups.interface';
+import { Course, CourseApiResponse } from './models/course.interface';
 
 @Component({
   selector: 'app-courses',
@@ -12,11 +14,11 @@ import Swal from 'sweetalert2';
 })
 export class Courses implements OnInit {
   isAdmin = localStorage.getItem('final-project-role') === 'admin';
-  courses: any[] = [];
-  categories: any[] = [];
-  prices: any[] = [];
-  skillLevels: any[] = [];
-  languages: any[] = [];
+  courses: Course[] = [];
+  categories: Lookups[] = [];
+  prices: Lookups[] = [];
+  skillLevels: Lookups[] = [];
+  languages: Lookups[] = [];
   totalResults: number = 0;
   currentPage: number = 1;
   limit: number = 4;
@@ -64,8 +66,8 @@ export class Courses implements OnInit {
       sort: this.sort,
     };
     this._courseService.getCourses(filters).subscribe({
-      next: (res) => {
-        this.courses = res.data;
+      next: (res: CourseApiResponse) => {
+        this.courses = res.data as Course[];
         this.totalResults = res.paginationResult.totalResults;
         this.currentPage = res.paginationResult.currentPage;
         this.numberOfPages = res.paginationResult.numberOfPages;
@@ -82,7 +84,7 @@ export class Courses implements OnInit {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   getCategories() {
     this._courseService.getCategories().subscribe({
-      next: (res) => {
+      next: (res: LookupsApiResponse) => {
         this.categories = res.data;
         this._cdr.detectChanges();
       },
@@ -93,7 +95,7 @@ export class Courses implements OnInit {
   }
   getPrices() {
     this._courseService.getPrices().subscribe({
-      next: (res) => {
+      next: (res: LookupsApiResponse) => {
         this.prices = res.data;
         this._cdr.detectChanges();
       },
@@ -104,7 +106,7 @@ export class Courses implements OnInit {
   }
   getSkillLevels() {
     this._courseService.getSkillLevels().subscribe({
-      next: (res) => {
+      next: (res: LookupsApiResponse) => {
         this.skillLevels = res.data;
         this._cdr.detectChanges();
       },
@@ -115,7 +117,7 @@ export class Courses implements OnInit {
   }
   getLanguages() {
     this._courseService.getLanguages().subscribe({
-      next: (res) => {
+      next: (res: LookupsApiResponse) => {
         this.languages = res.data;
         this._cdr.detectChanges();
       },
@@ -126,7 +128,7 @@ export class Courses implements OnInit {
   }
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // * LOOKUPS
+  // * LOOKUPS Changes
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   onCategoryChange(category: string) {

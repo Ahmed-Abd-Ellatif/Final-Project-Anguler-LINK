@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, ViewChild, OnInit, inject } f
 import { CourseService } from '../../services/course-service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Course, CourseApiResponse } from '../../models/course.interface';
 
 @Component({
   selector: 'app-course-details',
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 export class CourseDetails implements OnInit {
   isAdmin = localStorage.getItem('final-project-role') === 'admin';
   courseId!: string;
-  courseData: any;
+  courseData!: Course;
   @ViewChild('tinySlider') tinySliderEl!: ElementRef<HTMLElement>;
 
   _courseService = inject(CourseService);
@@ -28,8 +29,8 @@ export class CourseDetails implements OnInit {
   }
 
   getCourseById() {
-    this._courseService.getCourseById(this.courseId).subscribe((res) => {
-      this.courseData = res.data;
+    this._courseService.getCourseById(this.courseId).subscribe((res: CourseApiResponse) => {
+      this.courseData = res.data as Course;
       this._cdr.detectChanges();
     });
   }
