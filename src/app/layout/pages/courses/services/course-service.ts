@@ -1,13 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
+import { Category } from '../model/interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  // baseUrl: string = 'http://localhost:3000/api/';
-  baseUrl: string = 'https://final-project-node-link.vercel.app/api/';
   _http = inject(HttpClient);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,45 +32,45 @@ export class CourseService {
     if (body.sort) {
       params = params.append('sort', body.sort);
     }
-    return this._http.get(`${this.baseUrl}courses`, { params });
+    return this._http.get(`${environment.baseUrl}courses`, { params });
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GET COURSE BY ID
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   getCourseById(id: string): Observable<any> {
-    return this._http.get(`${this.baseUrl}courses/${id}`);
+    return this._http.get(`${environment.baseUrl}courses/${id}`);
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // CREATE COURSE
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   createCourse(courseData: any): Observable<any> {
-    return this._http.post(`${this.baseUrl}courses`, courseData);
+    return this._http.post(`${environment.baseUrl}courses`, courseData);
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // UPDATE COURSE
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   updateCourse(id: string, courseData: any): Observable<any> {
-    return this._http.put(`${this.baseUrl}courses/${id}`, courseData);
+    return this._http.put(`${environment.baseUrl}courses/${id}`, courseData);
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // DELETE COURSE
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   deleteCourse(id: string): Observable<any> {
-    return this._http.delete(`${this.baseUrl}courses/${id}`);
+    return this._http.delete(`${environment.baseUrl}courses/${id}`);
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GET LOOKUPS
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   getCategories(): Observable<any> {
-    return this._http.get(`${this.baseUrl}lookups/categories`);
+    return this._http.get<any>(`${environment.baseUrl}lookups/categories`);
   }
   getPrices(): Observable<any> {
-    return this._http.get(`${this.baseUrl}lookups/prices`);
+    return this._http.get(`${environment.baseUrl}lookups/prices`);
   }
   getSkillLevels(): Observable<any> {
-    return this._http.get(`${this.baseUrl}lookups/skill-levels`);
+    return this._http.get(`${environment.baseUrl}lookups/skill-levels`);
   }
   getLanguages(): Observable<any> {
-    return this._http.get(`${this.baseUrl}lookups/languages`);
+    return this._http.get(`${environment.baseUrl}lookups/languages`);
   }
 }

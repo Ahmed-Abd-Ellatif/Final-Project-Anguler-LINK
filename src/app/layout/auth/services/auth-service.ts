@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // private baseUrl = 'http://localhost:3000/api/auth';
-  private baseUrl: string = 'https://final-project-node-link.vercel.app/api/';
   _http = inject(HttpClient);
 
   login(body: { email: string; password: string }): Observable<any> {
-    return this._http.post(`${this.baseUrl}/login`, body);
+    return this._http.post(`${environment.baseUrl}auth/login`, body);
   }
 
   register(body: {
@@ -21,7 +20,7 @@ export class AuthService {
     confirmPassword: string;
     termsAndConditions: boolean;
   }): Observable<any> {
-    return this._http.post(`${this.baseUrl}/signup`, body);
+    return this._http.post(`${environment.baseUrl}auth/signup`, body);
   }
 
   saveToken(token: string, role: string): void {
